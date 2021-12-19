@@ -36,9 +36,8 @@ and the answer on the bottom part.
 Then you just need to export your document as a pdf.
 So each of your page should look like this:
 
-<p align="right">
-<img width=150  src="templatepaper.png">
-</p>
+![](https://i.imgur.com/KZjVKMa.png)
+
 You can also add field
 
 1. code: To integrate mnemonics to code the card
