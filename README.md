@@ -1,12 +1,13 @@
-<p align="center">
-  <img src="logo.png">
-</p>
 
 ## Introduction
 
-Paper2Anki is your way to **write** your flashcards. Goodnotes 5 released a gamechanger in my opinion. You just write your flashcards,and you can study with them.
+Notes2Anki is your way to **write** your flashcards. Goodnotes 5 released a gamechanger in my opinion. You just write your flashcards,and you can study with them.
 However, I don't like the idea of only learning in Goodnotes and their algorithm needs some work imo.
 So I decided to create a way to make flashcards in Goodnotes (Or any other notes app) and export them to Anki!
+
+Added image hosting service to reduce the Anki DB size.
+
+
 
 ## About Anki
 Source: https://apps.ankiweb.net/
@@ -38,6 +39,12 @@ So each of your page should look like this:
 <p align="right">
 <img width=150  src="templatepaper.png">
 </p>
+You can also add field
+
+1. code: To integrate mnemonics to code the card
+2. reference: To add additional information besides the answer
+3. Examples: Applications and real life examples to further understanding.
+4. Reverse:  Add any character to create an reversed card. Leave blank to cancel the reversed card.
 
 ## Requirements
 
@@ -58,15 +65,31 @@ Open spotlight and search there for Terminal and then just follow the steps.
 
 ### Use
 
-1. Run `python paper2anki.py YOURFILE.PDF NAME`
+1. Create a Goodnotes Notebook with template FlashCard
+
+2. Export the Notebook as pdf version and store in the library folder
+
+3. Register at [Cloudinary](https://cloudinary.com)
+
+4. Copy Cloud Name, API Key, and API Secret from the dashboard 
+
+   and paste into the following string in the file notes2anki.py
+
+   ![](https://i.imgur.com/WWNMrhP.png)
+
+   ![](https://i.imgur.com/f9lmFPQ.png)
+
+1. Run `python ./library/paper2anki.py YOURFILE.PDF NAME`
    So you give the program 2 Arguments:
+   
    1. The PDF file which contains the flash cards
    2. The name you wish the deck to have.
-2. Import the .apkg file into Anki
+   
+6. Import the .apkg file into Anki
+
 3. Study
 
 ## Credits:
 
-- Icon in logo: https://www.flaticon.com/free-icon/script_708922
 - genanki (library to create anki cards in python): https://github.com/kerrickstaley/genanki
 - pdfrw great pdf library: https://pypi.org/project/pdfrw/

@@ -10,7 +10,9 @@ from PIL import Image
 from pdfrw import PdfReader, PdfWriter, PageMerge
 
 from AnkiCreator import create_apkg
-
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 TEMP = "Temp"
 if not os.path.exists(TEMP):
     os.makedirs(TEMP)
@@ -22,6 +24,11 @@ credits to Patrick Maupin
 I have modified it, so the pages do not contain empty block
 """
 
+cloudinary.config( 
+  cloud_name = "", 
+  api_key = "", 
+  api_secret = "" 
+)
 
 def splitpage(src):
     for y_pos in (0, 0.5):
@@ -33,26 +40,34 @@ def splitpage(src):
 
 def createPDF(pdf):
     writer = PdfWriter()
-    for page in PdfReader(pdf).pages:
+    for page in PdfReader(pdf).pages[1:]:
         writer.addpages(splitpage(page))
     writer.write(TEMP + os.sep + "input.pdf")
 
 
 def create_images():
+    lst =[]
     current_time_in_millis = str(int(time.time_ns()))
-    zoom_x = 2.0  # horizontal zoom
-    zomm_y = 2.0  # vertical zoom
+    zoom_x = 1  # horizontal zoom
+    zomm_y = 1 # vertical zoom
+
     mat = fitz.Matrix(zoom_x, zomm_y)  # zoom factor 2 in each dimension
     doc = fitz.open(TEMP + os.sep + "input.pdf")
+    
     for x in doc:
         pix = x.get_pixmap(alpha=False, matrix=mat)
-        img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+        img = Image.frombytes("RGB", [pix.width, pix.height//2], pix.samples)
         # To make every image name in each file unique we will use the unix timestamp of the current day as a name extra
         img.save(
             "%s%s.jpg"
             % (TEMP + os.sep, format(x.number, "04d") + "-" + current_time_in_millis)
         )
+        rst = cloudinary.uploader.upload("%s%s.jpg"
+            % (TEMP + os.sep, format(x.number, "04d") + "-" + current_time_in_millis))
+        lst.append(rst['url'])
 
+    return lst
+        
 
 def rename_files():
     regex = r"[0-9]+\.jpg"
@@ -73,6 +88,7 @@ if __name__ == "__main__":
     pdf = sys.argv[1]
     name = sys.argv[2]
     createPDF(pdf)
-    create_images()
-    create_apkg(name)
+    lst = create_images()
+    create_apkg(name,lst)
     remove_temp()
+    print("done")
