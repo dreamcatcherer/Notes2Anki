@@ -90,5 +90,6 @@ Open spotlight and search there for Terminal and then just follow the steps.
 
 ## Credits:
 
+- Paper2anki:https://github.com/Smponi/Paper2Anki
 - genanki (library to create anki cards in python): https://github.com/kerrickstaley/genanki
 - pdfrw great pdf library: https://pypi.org/project/pdfrw/
