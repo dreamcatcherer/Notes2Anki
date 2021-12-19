@@ -41,9 +41,16 @@ So each of your page should look like this:
 You can also add field
 
 1. code: To integrate mnemonics to code the card
+
 2. reference: To add additional information besides the answer
+
 3. Examples: Applications and real life examples to further understanding.
+
 4. Reverse:  Add any character to create an reversed card. Leave blank to cancel the reversed card.
+
+   ![](https://i.imgur.com/nmgtJiY.png)
+
+   ![](https://i.imgur.com/3VpuZkk.png)
 
 ## Requirements
 

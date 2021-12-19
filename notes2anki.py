@@ -56,7 +56,7 @@ def create_images():
     
     for x in doc:
         pix = x.get_pixmap(alpha=False, matrix=mat)
-        img = Image.frombytes("RGB", [pix.width, pix.height//2], pix.samples)
+        img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
         # To make every image name in each file unique we will use the unix timestamp of the current day as a name extra
         img.save(
             "%s%s.jpg"
