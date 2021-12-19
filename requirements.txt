@@ -1,0 +1,4 @@
+pdfrw==0.4
+genanki
+pymupdf
+pillow
