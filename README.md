@@ -85,7 +85,7 @@ Open spotlight and search there for Terminal and then just follow the steps.
 
    ![](https://i.imgur.com/f9lmFPQ.png)
 
-1. Run `python ./library/paper2anki.py YOURFILE.PDF NAME`
+1. Run `python ./library/notes2anki.py YOURFILE.PDF NAME`
    So you give the program 2 Arguments:
    
    1. The PDF file which contains the flash cards
